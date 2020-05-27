@@ -1,46 +1,78 @@
 <template>
     <div>
-        <div v-for="news in feedNews" :key="news.id"/>
-        <v-img
-                height="350px"
-                v-bind:src="getImgUrl(news.id)"
-        />
-    </div>
+        <div class="split left">
+            <div class="centered">
+                <v-img max-width="600px" v-bind:src="feedNews.urlToImage" />
+                <h2>{{feedNews.title}}</h2>
+                <p>{{feedNews.description}}</p>
+                <p>author: {{feedNews.author}}</p>
+                <p>publishedAt : {{feedNews.publishedAt}}</p>
+            </div>
+        </div>
+
+        <div class="split right">
+            <div class="centered">
+                <p>{{feedNews.content}}</p>
+            <br/>
+                <v-btn  v-bind:href="feedNews.url" target="_blank" >Read More</v-btn>
+            </div>
+            </div>
+        </div>
+
 </template>
+<style>
+
+    .home{
+        position: absolute;
+        right: 0;
+    }
+
+    .split {
+        height: 100%;
+        width: 50%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        overflow-x: hidden;
+        padding-top: 20px;
+    }
+
+    .left {
+        left: 0;
+        background-color: white;
+    }
+
+    .right {
+        right: 0;
+        background-color: deepskyblue;
+    }
+
+    .centered {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+</style>
 
 <script>
-
     export default {
         name: "News",
         data() {
             return {
-                id:'',
-                feedNews: '',
-            }
+                feedNews: ""
+            };
         },
-        methods: {
-            initData: function (id) {
-                let queryString  = '';
-                queryString = "https://newsapi.org/v2/articles?source="+id+"&apiKey=099148be22804e849a0c6fe022b7cf5e";
-                this
-                    .$http
-                    .get(queryString)
-                    .then(function(res){
-                        console.log(res.body.articles);
-                        this.feedNews = res.body.articles;
-                    })
-                    .catch(function(err){
-                        this.feedNews = err;
-                    })
-            }
-        },
-        created() {
-            this.id = this.$route.params.id;
-        },
-    }
-    console.log("running");
+        mounted() {
+            this.feedNews = this.$store.getters.articleWithTitle(
+                this.$route.params.title
+            );
+            this.$store.commit("appendVisited", this.$route.params.title);
+        }
+    };
 </script>
 
-<style scoped>
 
-</style>
+<!--<v-btn v-bind:href="feedNews.url" target="_blank">See more info</v-btn>-->

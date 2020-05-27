@@ -1,6 +1,6 @@
 <template>
-  <v-app light>
-    <!--The SideMenu Component go here-->
+  <v-app dark>
+    <SideMenu :drawer="drawer" :api_key="api_key" @selectsource="setResource"/>
     <v-app-bar
             app
             fixed
@@ -19,15 +19,18 @@
         />
       </template>
 
-      <v-app-bar-nav-icon/>
+      <v-app-bar-nav-icon @click="drawer = !drawer"   class="white--text"/>
 
       <v-toolbar-title>News</v-toolbar-title>
 
       <v-spacer/>
 
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
+      <v-text-field
+      label="Search for some news"
+      outlined
+      @click="search"
+      @input="searchQuery"
+      />
 
     </v-app-bar>
 
@@ -46,11 +49,13 @@
 
   import axios from 'axios'
   import NewsCard from '../components/NewsCard.vue'
+  import SideMenu from '../components/SideMenu.vue'
 
   export default {
 
     components: {
       NewsCard,
+      SideMenu
     },
 
     data() {
@@ -58,10 +63,13 @@
         drawer: false,
         api_key:'099148be22804e849a0c6fe022b7cf5e',
         articles: [],
-        errors: []
+        errors: [],
+        searchQuery: "",
+        isLoading: false
       }
     },
     created () {
+      this.$store.commit("setHeadline", "old", "new");
       axios.get(' https://newsapi.org/v2/top-headlines?country=us&apiKey='+this.api_key)
               .then(response => {
                 this.articles = response.data.articles;
@@ -71,8 +79,38 @@
               .catch(e => {
                 this.errors.push(e)
               })
-    },
+    }, methods: {
+      setResource(source){axios.get('https://newsapi.org/v2/top-headlines?sources='+source+'&apiKey='+this.api_key)
+              .then(response => {
+                this.articles = response.data.articles
+                console.log(response.data)
+              })
+              .catch(e => {
+                this.errors.push(e)
+              })
 
-
+      },
+      async fff() {
+        return new Promise(resolve => {
+          setTimeout(() => {
+            resolve();
+          }, 5000);
+        });
+      },
+      async search(searchQuery) {
+        this.isLoading = true;
+        await this.fff();
+        this.isLoading = false;
+        axios.get(' https://newsapi.org/v2/top-headlines?q='+searchQuery+'&apiKey='+this.api_key)
+                .then(response => {
+                  this.articles = response.data.articles;
+                  console.log('data:');
+                  console.log(response.data.articles)
+                })
+                .catch(e => {
+                  this.errors.push(e)
+                })
+      }
+    }
   }
 </script>
