@@ -20,6 +20,12 @@
             </template>
 
             <v-app-bar-nav-icon @click="drawer = !drawer"   class="white--text"/>
+            <v-btn icon  :to="{ name: 'Home'}">
+                <v-icon>mdi-home</v-icon>
+            </v-btn>
+            <v-btn icon :to="{ name: 'History'}">
+                <v-icon>mdi-history</v-icon>
+            </v-btn>
 
             <v-toolbar-title>News</v-toolbar-title>
 

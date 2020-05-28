@@ -35,7 +35,7 @@
         isLoading: false,
       }
     },
-    mounted () {
+    created () {
       this.articles = this.$store.getters.allArticles;
       // this.$store.commit("setHeadline", "", "new");
       // axios.get(' https://newsapi.org/v2/top-headlines?country=us&apiKey='+this.api_key)

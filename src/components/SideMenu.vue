@@ -1,5 +1,5 @@
 <template>
-    <v-navigation-drawer v-model="drawer" fixed app clipped  class="drawer-style" id="style-1">
+    <v-navigation-drawer v-model="drawer" fixed app   class="drawer-style" id="style-1">
         <v-list dense class="pt-3 white--text" >
             <v-list-item
                     v-for="source in sources"
