@@ -15,16 +15,13 @@ const routes = [
     {
         path: '/news/:title',
         name: 'News',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
         component: News,
       },
     {
         path: '/history',
         name: 'History',
         component: History,
-    },
+      },
 ];
 
 const router = new VueRouter({

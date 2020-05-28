@@ -1,21 +1,29 @@
 <template>
-    <h1>{{visitedArticle.title}}</h1>
+    <v-app dark>
+        <v-content>
+            <v-container fluid>
+                <NewsCard :articles="showArticle" />
+            </v-container>
+        </v-content>
+    </v-app>
 </template>
 
 <script>
+    import { mapGetters } from "vuex";
+    import NewsCard from "../components/NewsCard"
     export default {
         name: "History",
-        data(){
-            return {
-                visitedArticle: ""
-        }
+        components: {
+            NewsCard
         },
-        mounted() {
-            this.visitedArticle = this.$store.getters.articlesVisited;
+        computed: {
+            ...mapGetters(["articlesVisited"]),
+    showArticle(){
+        return this.articlesVisited;
+            }
         }
-    }
+    };
 </script>
 
 <style scoped>
-
 </style>

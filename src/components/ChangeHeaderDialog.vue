@@ -12,15 +12,21 @@
                     <v-container>
                         <v-row>
                             <v-col cols="12" sm="6" md="4">
-                                <v-text-field label="News Header" required @input="newHeader"> </v-text-field>
+                                <v-text-field
+                                        label="News Header"
+                                        required
+                                        v-model="newHeader"
+                                />
                             </v-col>
                         </v-row>
                     </v-container>
                 </v-card-text>
                 <v-card-actions>
-                    <v-spacer/>
-                    <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-                    <v-btn color="blue darken-1" text @click="setHeader" >Save</v-btn>
+                    <v-spacer />
+                    <v-btn color="blue darken-1" text @click="dialog = false"
+                    >Close</v-btn
+                    >
+                    <v-btn color="blue darken-1" text @click="setHeader">Save</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -31,18 +37,22 @@
     export default {
         data: () => ({
             dialog: false,
-            oldHeader: "",
             newHeader: ""
         }),
-        mounted(){
-            this.oldHeader = this.$store.getters.allArticles;
+        props: {
+            article: {
+                type: Object,
+                default: () => {}
+            }
         },
         methods: {
-            setHeader(newHeader){
-                newHeader =  this.newHeader;
-                this.$store.commit("setHeadline", this.oldHeader.title,newHeader);
+            setHeader() {
+                this.$store.commit("setHeadline", {
+                    oldTitle: this.article.title,
+                    newTitle: this.newHeader
+                });
                 this.dialog = false;
             }
         }
-    }
+    };
 </script>

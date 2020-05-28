@@ -3,25 +3,23 @@
         <div class="split left">
             <div class="centered">
                 <v-img max-width="600px" v-bind:src="feedNews.urlToImage" />
-                <h2>{{feedNews.title}}</h2>
-                <p>{{feedNews.description}}</p>
-                <p>author: {{feedNews.author}}</p>
-                <p>publishedAt : {{feedNews.publishedAt}}</p>
+                <h2>{{ feedNews.title }}</h2>
+                <p>{{ feedNews.description }}</p>
+                <p>author: {{ feedNews.author }}</p>
+                <p>publishedAt : {{ feedNews.publishedAt }}</p>
             </div>
         </div>
 
         <div class="split right">
             <div class="centered">
-                <p>{{feedNews.content}}</p>
-            <br/>
-                <v-btn  v-bind:href="feedNews.url" target="_blank" >Read More</v-btn>
-            </div>
+                <p>{{ feedNews.content }}</p>
+                <br />
+                <v-btn v-bind:href="feedNews.url" target="_blank">Read More</v-btn>
             </div>
         </div>
-
+    </div>
 </template>
 <style>
-
     .split {
         height: 100%;
         width: 50%;
@@ -49,7 +47,6 @@
         transform: translate(-50%, -50%);
         text-align: center;
     }
-
 </style>
 
 <script>
@@ -60,11 +57,11 @@
                 feedNews: ""
             };
         },
-        mounted() {
+          mounted() {
             this.feedNews = this.$store.getters.articleWithTitle(
                 this.$route.params.title
             );
-            this.$store.commit("appendVisited", this.$route.params.title);
+            this.$store.commit("appendVisited", this.feedNews);
         }
     };
 </script>

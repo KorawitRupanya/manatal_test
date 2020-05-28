@@ -1,6 +1,12 @@
 <template>
-    <v-navigation-drawer v-model="drawer" fixed app   class="drawer-style" id="style-1">
-        <v-list dense class="pt-3 white--text" >
+    <v-navigation-drawer
+            v-model="drawer"
+            fixed
+            app
+            class="drawer-style"
+            id="style-1"
+    >
+        <v-list dense class="pt-3 white--text">
             <v-list-item
                     v-for="source in $store.state.sources"
                     :key="source.id"
@@ -16,7 +22,6 @@
 
 
 <script>
-
     import { mapState } from "vuex";
 
     export default {
@@ -24,32 +29,22 @@
             drawer: Boolean
         },
 
-        components: {
-        },
+        components: {},
 
         data() {
             return {
                 sources: [],
                 errors: [],
-                ...mapState(["articles"]),
-            }
+                ...mapState(["articles"])
+            };
         },
-        created () {
-         this.sources = this.$store.getters.getAllSource
-                .then(response => {
-                    this.sources = response.data.sources;
-                    console.log('data:');
-                    console.log(response.data.sources)
-                })
-                .catch(e => {
-                    this.errors.push(e)
-                })
+        created() {
+            this.sources = this.$store.getters.getAllSource;
         },
         methods: {
-            selectSource(source){
-                this.$emit('selectsource',source)
-                // this.articles = this.$store.getters.articlesWithSource(source);
+            selectSource(source) {
+                this.$emit("selectsource", source);
             }
         }
-    }
+    };
 </script>
