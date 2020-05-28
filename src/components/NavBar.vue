@@ -61,7 +61,6 @@
             return {
                 drawer: false,
                 api_key:'099148be22804e849a0c6fe022b7cf5e',
-                articles: [],
                 errors: [],
                 ...mapState(["articles"]),
                 searchQuery: "",
@@ -69,17 +68,15 @@
             }
         },
          methods: {
-            setResource(source){
-                 // this.articles = this.$store.getters.articlesWithSource(source);
+             setResource(source){
                 axios.get('https://newsapi.org/v2/top-headlines?sources='+source+'&apiKey='+this.api_key)
                     .then(response => {
-                        this.articles = response.data.articles
+                        this.articles = this.$store.getters.articlesWithSource(source);
                         console.log(response.data)
                     })
                     .catch(e => {
                         this.errors.push(e)
                     })
-
             },
             async fff() {
                 return new Promise(resolve => {

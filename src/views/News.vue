@@ -22,11 +22,6 @@
 </template>
 <style>
 
-    .home{
-        position: absolute;
-        right: 0;
-    }
-
     .split {
         height: 100%;
         width: 50%;
@@ -73,6 +68,3 @@
         }
     };
 </script>
-
-
-<!--<v-btn v-bind:href="feedNews.url" target="_blank">See more info</v-btn>-->

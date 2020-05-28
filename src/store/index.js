@@ -49,10 +49,10 @@ export default new Vuex.Store({
     getters: {
         allArticles: (state) => state.articles,
         articlesVisited: (state)=> state.visited,
+        getAllSource: (state) =>  state.sources,
         articleWithTitle: (state) => (title) => {
             return state.articles.find((article) => article.title === title);
           },
-
         articlesWithSource: (state) => (source) => {
             return state.articles.filter((article) => article.source.name === source);
           },
