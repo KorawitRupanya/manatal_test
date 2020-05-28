@@ -1,10 +1,18 @@
 <template>
-    <h1>Hello from History</h1>
+    <h1>{{visitedArticle.title}}</h1>
 </template>
 
 <script>
     export default {
-        name: "History"
+        name: "History",
+        data(){
+            return {
+                visitedArticle: ""
+        }
+        },
+        mounted() {
+            this.visitedArticle = this.$store.getters.articlesVisited;
+        }
     }
 </script>
 

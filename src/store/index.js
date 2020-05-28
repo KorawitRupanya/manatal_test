@@ -48,6 +48,7 @@ export default new Vuex.Store({
       },
     getters: {
         allArticles: (state) => state.articles,
+        articlesVisited: (state)=> state.visited,
         articleWithTitle: (state) => (title) => {
             return state.articles.find((article) => article.title === title);
           },
