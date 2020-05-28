@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import News from '../views/News';
 import Source from '../views/Source.vue';
+import History from '../views/History';
 
 Vue.use(VueRouter);
 
@@ -25,6 +26,11 @@ const routes = [
         name: 'Source',
         component: Source,
       },
+    {
+        path: '/history',
+        name: 'History',
+        component: History,
+    },
 ];
 
 const router = new VueRouter({
