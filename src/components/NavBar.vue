@@ -36,6 +36,12 @@
                     @input="search"
                     height="10px"
             />
+            <div v-if="isLoading">
+                <v-progress-circular
+                        indeterminate
+                        color="green"
+                />
+            </div>
         </v-app-bar>
     </div>
 </template>
@@ -77,13 +83,6 @@
                     .catch(e => {
                         this.errors.push(e);
                     });
-            },
-            async fff() {
-                return new Promise(resolve => {
-                    setTimeout(() => {
-                        resolve();
-                    }, 5000);
-                });
             },
             async search() {
                 if (this.searchQuery.length > 0) {

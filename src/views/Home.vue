@@ -11,6 +11,7 @@
 
 <script>
   import NewsCard from "../components/NewsCard.vue";
+  import axios from 'axios';
   import { mapState, mapGetters } from "vuex";
 
   export default {
@@ -35,11 +36,11 @@
         }
       }
     },
-    // methods: {
-    //   async callWrongAPI() {
-    //     await axios.get("https://newsapi.org/v2/sources?apiKey ");
-    //   }
-    // },
+    methods: {
+      async callWrongAPI() {
+        await axios.get("https://newsapi.org/v2/sources?apiKey ");
+      }
+    },
     async mounted() {}
   };
 </script>
