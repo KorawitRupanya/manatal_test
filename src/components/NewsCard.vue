@@ -1,6 +1,6 @@
 <template>
-  <v-layout row>
-    <v-flex>
+  <v-layout row wrap align-center>
+    <v-flex xs8  offset-md2>
       <div v-for="article in articles" :key="article.title">
         <v-card class="my-3" hover>
           <v-container fluid grid-list-md>
@@ -8,7 +8,7 @@
               <v-img height="350px"  v-bind:src="article.urlToImage" />
               <v-container fill-height fluid>
                 <v-layout>
-                  <v-flex xs10 align-end d-flex>
+                  <v-flex  >
                     <v-chip small color="secondary" class="white--text">
                       {{ article.source.name }}
                     </v-chip>
