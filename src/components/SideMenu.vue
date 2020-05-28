@@ -32,6 +32,7 @@
         }),
 
         created () {
+            // this.sources = this.$store.getters.articlesWithSource(source);
             axios.get('https://newsapi.org/v2/sources?apiKey='+this.api_key)
                 .then(response => {
                     //this.articles = response.data.articles

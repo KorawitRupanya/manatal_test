@@ -52,8 +52,10 @@
     props: {
       articles: Array
     },
-    // data(){
-    //   cards: []
-    // }
+    data(){
+      return{
+        cards: []
+      }
+    }
   };
 </script>

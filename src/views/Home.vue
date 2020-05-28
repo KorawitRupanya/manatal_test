@@ -87,7 +87,7 @@
       //         })
     }, methods: {
       setResource(source){
-        // this.articles = this.$store.getters.articlesWithSource(source);
+        this.articles = this.$store.getters.articlesWithSource(source);
         axios.get('https://newsapi.org/v2/top-headlines?sources='+source+'&apiKey='+this.api_key)
               .then(response => {
                 this.articles = response.data.articles

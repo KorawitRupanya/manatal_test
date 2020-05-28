@@ -28,7 +28,7 @@ export default new Vuex.Store({
           const news = state.articles.findIndex(
               (article) => (article.title = oldTitle)
           );
-          state.article[news].title = newTitle;
+          state.articles[news].title = newTitle;
         },
       },
     actions: {
