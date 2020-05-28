@@ -12,11 +12,7 @@
                     <v-container>
                         <v-row>
                             <v-col cols="12" sm="6" md="4">
-                                <v-text-field
-                                        label="News Header"
-                                        required
-                                        v-model="newHeader"
-                                />
+                                <input v-model="newHeader" type="text" class="form-control" placeholder="New Header" :maxlength="max"  />
                             </v-col>
                         </v-row>
                     </v-container>
@@ -37,7 +33,8 @@
     export default {
         data: () => ({
             dialog: false,
-            newHeader: ""
+            newHeader: "",
+            max: 100,
         }),
         props: {
             article: {

@@ -2,7 +2,7 @@
   <v-app dark>
     <v-content>
       <v-container fluid>
-        <h1 v-show="isLoading">Spinning</h1>
+        <v-btn @click="callWrongAPI"> Wrong API calls</v-btn>
         <NewsCard :articles="showArticle" />
       </v-container>
     </v-content>
@@ -35,10 +35,16 @@
           return this.articles;
         }
       }
+
     },
     methods: {
       async callWrongAPI() {
-        await axios.get("https://newsapi.org/v2/sources?apiKey ");
+        await axios.get(
+                ` https://newsapi.org/v2/sources?apiKey=`
+        ).then(response => {console.log(response.data);}).catch(e=>{
+          this.errors.push(e);
+          alert(e);
+        });
       }
     },
     async mounted() {}
