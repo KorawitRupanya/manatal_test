@@ -53,7 +53,7 @@
   import axios from 'axios'
   import NewsCard from '../components/NewsCard.vue'
   import SideMenu from '../components/SideMenu.vue'
-  // import { mapState } from "vuex";
+  import { mapState } from "vuex";
 
   export default {
 
@@ -68,7 +68,7 @@
         api_key:'099148be22804e849a0c6fe022b7cf5e',
         articles: [],
         errors: [],
-        // ...mapState(["articles"]),
+        ...mapState(["articles"]),
         searchQuery: "",
         isLoading: false,
       }
@@ -87,7 +87,7 @@
       //         })
     }, methods: {
       setResource(source){
-        this.articles = this.$store.getters.articlesWithSource(source);
+        // this.articles = this.$store.getters.articlesWithSource(source);
         axios.get('https://newsapi.org/v2/top-headlines?sources='+source+'&apiKey='+this.api_key)
               .then(response => {
                 this.articles = response.data.articles

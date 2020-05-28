@@ -15,30 +15,36 @@
               <v-container fill-height fluid>
                 <v-layout>
                   <v-flex xs10 align-end d-flex>
-                    <span class="headline">{{ article.title }}</span>
+                    <v-chip small color="secondary" class="white--text">
+                      {{ article.source.name }}
+                    </v-chip>
+                    <v-spacer/>
+                    <span class="headline">{{ article.title }}
+                    </span>
                     <ChangeHeaderDialog/>
                   </v-flex>
                 </v-layout>
               </v-container>
             </v-layout>
           </v-container>
+          <v-card-text>
+            {{ article.description }}
+            <v-btn
+                    small
+                    replace
+                    color="info"
+                    :to="{ name: 'News', params: { title: article.title } }"
+            >Read More</v-btn>
+          </v-card-text>
+
+          <v-card-actions>
+
+            <v-spacer/>
+
+            <v-spacer/>
+          </v-card-actions>
         </v-card>
-        <v-card-text>
-          {{ article.description }}
-        </v-card-text>
-        <v-card-actions>
-          <v-chip small color="secondary" class="white--text">
-            {{ article.source.name }}
-          </v-chip>
-          <v-spacer/>
-          <v-btn
-                  small
-                  replace
-                  color="info"
-                  :to="{ name: 'News', params: { title: article.title } }"
-          >Read More</v-btn>
-          <v-spacer/>
-        </v-card-actions>
+
       </div>
     </v-flex>
   </v-layout>
