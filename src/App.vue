@@ -1,16 +1,14 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link>
-    <br/>
-      <router-link to="/">History</router-link>
-    </div>
+    <NavBar/>
     <router-view />
   </div>
 </template>
 
 <script>
+  import NavBar from "@/components/NavBar";
   export default {
+    components: {NavBar},
     async mounted() {
       await this.$store.dispatch("fetchArticles");
       await this.$store.dispatch("fetchSources");
